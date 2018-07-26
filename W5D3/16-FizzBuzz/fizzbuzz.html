@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FizzBuzz</title>
+    </head>
+
+    <body>
+
+
+
+
+        <script>
+
+            var i = 0;
+
+            function counter() {
+
+                if (i % 3 == 0 && i % 5 == 0) {
+                    console.log("FizzBuzz");
+                } else if (i % 3 == 0) {
+                    console.log("Fizz");
+                } else if (i % 5 == 0) {
+                    console.log("Buzz");
+                } else {
+                    console.log(i);
+                }
+
+                if (i < 100) {
+                    i++;
+                } else {
+                    clearInterval(myInterval);
+                }            
+                
+            }
+
+            var myInterval = setInterval(counter, 500);
+        
+        </script>
+    </body>
+</html>

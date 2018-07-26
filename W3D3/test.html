@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        You just pressed... <span id="userText">...nothing</span>.
+
+
+        <script type="text/javascript">
+            var userText = document.getElementById("userText");
+
+            function showKeyPress(event) {
+                userText.textContent = event.key;   
+            };
+
+            document.addEventListener("keyup", showKeyPress);
+       
+
+        </script>
+
+    </body>
+</html>

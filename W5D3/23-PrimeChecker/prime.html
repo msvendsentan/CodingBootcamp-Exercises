@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prime Number</title>
+    </head>
+
+    <body>
+
+
+
+
+        <script>
+
+            var myNumber = prompt("Enter number");
+            var primeCheck = "yes";
+
+            function isPrime() {
+
+                for (var i = 2; i < myNumber; i++) {
+                    if (myNumber % i == 0) {
+                        primeCheck = "no";
+
+                    }
+                }
+
+                alert(primeCheck + " " + myNumber);
+               
+            }
+
+            isPrime();
+
+
+        
+        </script>
+    </body>
+</html>

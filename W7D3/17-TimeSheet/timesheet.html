@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Timesheet</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+</head>
+
+
+
+<body>
+    <div class="jumbotron container">
+        <h1>Employee Timesheet Utility</h1>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Add Employee</h2>
+
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name_input">Employee Name:</label>
+                        <input class="form-control" id="name_input" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="role_input">Role:</label>
+                        <input class="form-control" id="role_input" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="date_input">Date:</label>
+                        <input class="form-control" id="date_input" type="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="time_in_input">Time In:</label>
+                        <input class="form-control" id="time_in_input" type="time">
+                    </div>
+                    <div class="form-group">
+                        <label for="time_out_input">Time Out:</label>
+                        <input class="form-control" id="time_out_input" type="time"></input>
+                    </div>
+                    <button class="btn btn-success" id="user_submit" type="submit">Submit</button>
+                </form>
+            </div>
+
+        </div><br>
+
+        <div class="card card-body">
+            <h2 class="card-title">Log</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time In</th>
+                        <th scope="col">Time Out</th>
+                    </tr>
+                </thead>
+                <tbody id="log_fill">
+
+                </tbody>
+                </table>
+
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script>
+        var config = {
+            apiKey: "AIzaSyBlVD93rjuOeTK8HQS9ouaL8ASMR8pJl_E",
+            authDomain: "utor-coding-bootcamp-sample.firebaseapp.com",
+            databaseURL: "https://utor-coding-bootcamp-sample.firebaseio.com",
+            projectId: "utor-coding-bootcamp-sample",
+            storageBucket: "utor-coding-bootcamp-sample.appspot.com",
+            messagingSenderId: "640941872842"
+        };
+    
+        firebase.initializeApp(config);
+
+        function display(snapshot) {
+            $("<tr>")
+                .append("<td>" + snapshot.val().name + "</td>")
+                .append("<td>" + snapshot.val().role + "</td>")
+                .append("<td>" + snapshot.val().date + "</td>")
+                .append("<td>" + snapshot.val().timeIn + "</td>")
+                .append("<td>" + snapshot.val().timeOut + "</td>")
+                .appendTo($("#log_fill"));
+
+        }
+
+        function error(error) {
+            console.log("The read failed: " + error.code);
+        }
+
+        $("#user_submit").on("click", function(event) {
+            event.preventDefault();
+            var name = $("#name_input").val().trim();
+            var role = $("#role_input").val().trim();
+            var date = $("#date_input").val().trim();
+            var timeIn = $("#time_in_input").val().trim();
+            var timeOut = $("#time_out_input").val().trim();
+
+            console.log(name);
+            console.log(role);
+            console.log(date);
+            console.log(timeIn);
+            console.log(timeOut);
+
+            firebase.database().ref().push({
+                name: name,
+                role: role,
+                date: date,
+                timeIn: timeIn,
+                timeOut: timeOut,
+                dateAdded: firebase.database.ServerValue.TIMESTAMP
+            });
+
+        });
+
+        firebase.database().ref().on("child_added", display, error)
+    
+    
+    
+    
+    </script>
+    
+</body>
+
+
+
+
+</html>
