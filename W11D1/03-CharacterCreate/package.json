@@ -1,0 +1,14 @@
+{
+  "name": "03-charactercreate",
+  "version": "1.0.0",
+  "description": "* Over the course of this activity you are going to be using constructors to create simplistic characters for use within a very basic Roleplaying Game (RPG)",
+  "main": "CharacterCreate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^6.0.0"
+  }
+}
