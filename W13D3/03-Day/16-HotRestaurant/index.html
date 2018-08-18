@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Posh Poutines</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+        html { 
+            background: lightgrey;
+        }
+
+        header {
+            width: 100%;
+            background: teal;
+            margin-bottom: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin-bottom: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: white;
+            line-height: 120px;
+        }
+
+        main {
+            width: 60%;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            background: darkgrey;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        p {
+            margin-top: 0;
+        }
+    
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Posh Poutines</span></h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="./menu.html">Menu</a></li>
+                <li><a href="./reserve.html">Reserve</a></li>
+                <li><a href="./reservations.html">Reservations</a></li>
+                <li><a href="./waitlist.html">Waitlist</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <p>Welcome to Posh Poutines! Where you can pay top dollar for mediocre poutines! We're so posh that we actually have a registration system! Currently, our restaurant can only accomodate reservations, because we only have that many tables!</p>
+        <p>The below are admin functions!</p>
+        <button id="delete_reservations">Delete Reservations</button>
+        <button id="delete_waitlist">Delete Waitlist</button>
+    </main>
+    <script>
+        $(document).ready(function() {
+            $("#delete_reservations").on("click", function() {
+                $.post("/api/delete/reservations").then(function() {
+                    alert("Reservations Deleted");
+                });
+            });
+
+            $("#delete_waitlist").on("click", function() {
+                $.post("/api/delete/waitinglist").then(function() {
+                    alert("Waitinglist Deleted");
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
