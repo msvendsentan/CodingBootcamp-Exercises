@@ -12,9 +12,20 @@ var connection = require("../config/connection.js");
 module.exports = function(app) {
 
   // Get all chirps
-
+  app.get("/api/all", function(req, res) {
+    connection.query("SELECT * FROM chirps", function(err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+  });
 
   // Add a chirp
-
+  app.post("/api/new", function(req, res) {
+    connection.query("INSERT INTO chirps (author, chirp) VALUES (?, ?)", [req.body.author, req.body.chirp], function(err, result) {
+      if (err) throw err;
+      console.log("Chirp created!");
+      res.end();
+    });
+  });
 
 };
